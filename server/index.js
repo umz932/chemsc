@@ -112,7 +112,7 @@ a.get("/props/:cas", regulator, async (q,s) => {
     // Get properties
     let $ = await scrape("https://www.tcichemicals.com/JP/ja/p/" + pid);
     for(let i of prop_list) 
-        res[ i[0] ] = $(".productDetailTable").find(`td:contains(${ i[1] })`).next().text();
+        res[ i[0] ] = $(".productDetailTable").find(`td:contains(${ i[1] })`).eq(0).next().text();
 
     s.json(res);
 });
