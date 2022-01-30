@@ -1,0 +1,7 @@
+.git
+.nuxt
+dist
+pages/__*
+node_modules
+.editorconfig
+README.md
