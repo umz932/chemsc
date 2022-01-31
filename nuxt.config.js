@@ -14,7 +14,7 @@ module.exports = {
       { hid: 'og:type', name: 'og:type', content: 'website' },
       { hid: 'og:title', name: 'og:title', content: 'chemsc' },
       { hid: 'og:url', name: 'og:url', content:'https://chemsc.now.sh' },
-      { hid: 'og:description', name: 'og:description', content:'あなたを詐欺罪と労働基準法違反で訴えます！理由はもちろんお分かりですね？あなたが皆をここはホワイトだと騙し、ブラックな研究室に誘導したからです！覚悟の準備をしておいて下さい。近いうちに訴えます。裁判も起こします。裁判所にも問答無用できてもらいます。慰謝料の準備もしておいて下さい！貴方は犯罪者です！刑務所にぶち込まれる楽しみにしておいて下さい！いいですねッ！'},
+      { hid: 'og:description', name: 'og:description', content:'Reagent Search & Chemical Information'},
       { name: "robots", content: "noindex,nofollow,noarchive"},
     ],
     link: [
