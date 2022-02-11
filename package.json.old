@@ -1,0 +1,45 @@
+{
+  "name": "chemsc",
+  "version": "1.0.1",
+  "description": ",",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.0.0",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/toast": "^3.3.1",
+    "base64-url": "^2.3.3",
+    "buefy": ">=0.9.14",
+    "cheerio": "^1.0.0-rc.10",
+    "codemirror": "^5.65.1",
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.2",
+    "express-slow-down": "^1.4.0",
+    "helmet": "^5.0.2",
+    "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "nuxt": "^2.2.0",
+    "nuxt-buefy": "^0.4.14",
+    "nuxt-helmet": "^2.1.1",
+    "rxjs": "^6.6.7",
+    "shvl": "^2.0.3",
+    "uuid": "^8.3.2",
+    "vee-validate": "^3.4.14",
+    "vue-rx": "^6.2.0",
+    "vue-slide-up-down": "^2.0.1"
+  },
+  "devDependencies": {
+    "@rdkit/rdkit": "^2021.9.4",
+    "nodemon": "^2.0.15",
+    "vercel": "^23.1.2"
+  }
+}

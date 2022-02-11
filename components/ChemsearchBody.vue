@@ -60,7 +60,7 @@
               <p v-if="!!storeAt"><strong>保存条件(TCI):</strong> {{storeAt}}</p>
               <p v-if="!!unstableUnder"><strong>避けるべき条件(TCI):</strong> {{unstableUnder}}</p>
               <p v-if="!!sdbs"><a :href="`https://sdbs.db.aist.go.jp/sdbs/cgi-bin/direct_frame_disp.cgi?sdbsno=${sdbs}`" target="_blank">SDBS<b-icon pack="fas" icon="external-link-alt"/></a></p>
-              <p><a :href="`https://pubchem.ncbi.nlm.nih.gov/compound/${cdata.cid}`" target="_blank">PubChem<b-icon pack="fas" icon="external-link-alt"/></a></p>
+              <p><a :href="path_ms" target="_blank">精密質量を計算(β)</a></p>
               <p><a @click="optionsVisible=!optionsVisible">重量計算オプション<b-icon pack="fas" :icon="optionsVisible?'angle-double-up':'angle-double-down'"/></a></p>
               <vue-slide-up-down :active="optionsVisible" :duration="300">
                 <div class="box">
@@ -117,6 +117,7 @@ import VueSlideUpDown from 'vue-slide-up-down';
 import { decode } from 'base64-url';
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import { get, head } from 'axios';
+import b64 from 'base64-url';
 import chimg from '~/components/chimg.vue';
 
 export default {
@@ -183,6 +184,9 @@ export default {
     purity_safe() {
       let purity = this.purity;
       return Number.isNaN(purity) || purity <= 0 || purity > 100 ? 100 : purity;
+    },
+    path_ms() {
+      return "/ms/" + b64.encode(this.cdata.smiles);
     },
     mass() {
       return Math.round(this.cdata.mw * this.quant * 10/ (this.purity_safe/100)) / 10;

@@ -21,19 +21,19 @@
                             pagination-position="bottom" 
                             default-sort="last_viewed"
                             default-sort-direction="desc"
-                            sort-icon="chevron-up">
-              <template slot-scope="{ row }">
-                <b-table-column field="name" label="Compound Name" sortable>
+                            sort-icon="chevron-up"
+                            >
+                <b-table-column field="name" label="Compound Name" sortable v-slot="{ row }">
                   <b-dropdown hoverable>
                     <nuxt-link :to="`/c/${row.cid}`" slot="trigger">{{row.name}}</nuxt-link>
 
                     <b-dropdown-item custom><chimg :cid="row.cid" width="200px" height="200px" /></b-dropdown-item>
                   </b-dropdown>
                 </b-table-column>
-                <b-table-column field="mw" label="MW" sortable>
+                <b-table-column field="mw" label="MW" sortable v-slot="{ row }">
                   {{row.mw}}
                 </b-table-column>
-                <b-table-column field="cas" label="CAS RN">
+                <b-table-column field="cas" label="CAS RN" v-slot="{ row }">
                   <b-dropdown v-if="row.cas">
                     <a slot="trigger">{{row.cas}}</a>
 
@@ -45,13 +45,12 @@
                     <b-dropdown-item @click="open(row.cas,i)" :key="item[0]" v-for="(item, i) in rdlist">{{item[0]}}</b-dropdown-item>
                   </b-dropdown>
                 </b-table-column>
-                <b-table-column field="count" label="View count" sortable>
+                <b-table-column field="count" label="View count" sortable v-slot="{ row }">
                   {{row.count}}
                 </b-table-column>
-                <b-table-column field="last_viewed" label="Last Viewed" sortable>
+                <b-table-column field="last_viewed" label="Last Viewed" sortable v-slot="{ row }">
                   {{parseDate(row.last_viewed)}}
                 </b-table-column>
-              </template>
             </b-table>
             <span class="button" @click="clear">Clear</span>
           </div>
@@ -79,7 +78,7 @@ export default {
       history: $ => Object.values($.history.items),
       history_queried() {
         let hist = this.history, qur = this.query;
-        return hist.length > 10 && qur.length > 0 ? hist.filter(v=>(new RegExp(`^${qur}`)).test(v.name)) : hist;
+        return hist.length > 10 && qur.length > 0 ? hist.filter(v=>(new RegExp(`^${qur}`, 'i')).test(v.name)) : hist;
       }
     }),
     methods: {

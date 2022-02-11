@@ -2,6 +2,7 @@
 .nuxt
 dist
 pages/__*
+server/.proxy.js
 node_modules
 .editorconfig
 README.md

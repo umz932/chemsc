@@ -1,11 +1,12 @@
 <template>
   <section class="container">
       <div class="box">
-        <p><strong>Structure search</strong></p>
+        <p><strong>構造検索</strong></p>
         <div id="structure"></div>
         
-        <button @click="search" class="button is-primary">Search</button>
-        <button @click="nsOpen=!0" class="button">Create structure template from name</button>
+        <button @click="search" class="button is-primary">検索</button>
+        <button @click="msearch" class="button"><strong>HRMS mass calculator(β)</strong></button>
+        <button @click="nsOpen=!0" class="button">名前から構造検索</button>
       </div>
 
       <b-modal :active.sync="nsOpen">
@@ -28,7 +29,7 @@ export default {
   head: {
     title: 'Structure Search',
     script: [
-      { src: "/jsme/jsme.nocache.js", type: "text/javascript" }
+      { src: "/jsme/jsme.nocache.js", type: "text/javascript", async: true, defer: true }
     ],
   },
   created() {
@@ -48,6 +49,11 @@ export default {
         let smiles = jsmeApplet.smiles();
 
         if( smiles ) this.$router.push(`/s/${btoa(smiles).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"")}`);
+    },
+    msearch() {
+        let smiles = jsmeApplet.smiles();
+
+        if( smiles ) this.$router.push(`/ms/${btoa(smiles).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"")}`);
     },
     async nsHit(q) {
       this.nsOpen = false;

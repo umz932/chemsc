@@ -8,6 +8,7 @@ yarn-debug.log*
 yarn-error.log*
 
 pages/__*
+server/.proxy.js
 
 # Runtime data
 pids
