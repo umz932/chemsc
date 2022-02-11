@@ -6,3 +6,4 @@ server/.proxy.js
 node_modules
 .editorconfig
 README.md
+.DS_Store
