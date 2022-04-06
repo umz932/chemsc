@@ -82,5 +82,30 @@ module.exports = {
   toast: {
     position: 'top',
     duration: 2000,
+  },
+  pwa: {
+    manifest: {
+      name: "chemsc",
+      lang: "ja"
+    },
+    workbox: {
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: `/[a-zA-Z]*/?$`,
+          handler: "staleWhileRevalidate"
+        },
+        {
+          urlPattern: `/_/.+`,
+          handler: "cacheFirst",
+          strategyOptions: {
+            cacheExpiration: {
+              maxAgeSeconds: 2592000
+            }
+          }
+        }
+      ]
+    }
   }
 }
