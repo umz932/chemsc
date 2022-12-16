@@ -7,12 +7,15 @@
   "scripts": {
     "dev": "nuxt",
     "build": "NODE_OPTIONS='--openssl-legacy-provider' nuxt build",
-    "start": "NODE_OPTIONS='--openssl-legacy-provider' nuxt start",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' nuxt build && nuxt start",
     "generate": "NODE_OPTIONS='--openssl-legacy-provider' nuxt generate"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
     "vercel": "^23.1.2"
+  },
+  "engines": {
+    "node": "14.x"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",

@@ -82,7 +82,9 @@ export default {
     const _smile = base64url.decode(this.$route.params.smiles),
           _self = this;
 
-    window.onload = async()=>{
+    const rd_tag = document.createElement("script");
+    rd_tag.setAttribute("src","/rdkit/RDKit_minimal.js");
+    rd_tag.addEventListener("load", async()=>{
       await window.initRDKitModule().then(async rd => {
         let mol = rd.get_mol(_smile)
         if(!mol.is_valid()) return (_self.err = "invalid SMILES was given");
@@ -92,7 +94,8 @@ export default {
         _self.formula = mol.get_inchi().match(/\/([^\/]+)\//)[1];
       });
       _self.pending = false;
-    };
+    });
+    document.head.appendChild(rd_tag);
   },
 
   components: {
