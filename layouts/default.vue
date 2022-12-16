@@ -4,7 +4,7 @@
 					<p><b-icon pack="fas" icon="spinner" size="is-large" custom-class="fa-spin" /></p>
 					<p class="is-size-4-tablet has-text-weight-bold" style="padding-left: 0.75rem">Loading...</p>
 		</b-loading>
-	  	<client-only>
+	  	<!--<client-only>-->
 			<div :class="{hidden: loading}">
 				<b-navbar type="is-light" :fixed-top="true">
 				<template slot="brand">
@@ -12,8 +12,10 @@
 					    &#x232c;
 					</b-navbar-item>
 					<b-navbar-item tag="div">
-					  <chem-search placeholder="Name Search ..." />
-					</b-navbar-item>
+            <client-only>
+					    <chem-search placeholder="Name Search ..." />
+            </client-only>
+            </b-navbar-item>
 				</template>
 				<template slot="start">
 					<b-navbar-item tag="router-link" v-for="el in navitems" :key="el.label" :to="el.to">
@@ -29,7 +31,7 @@
 				</div>
 				<hr />
 			</div>
-	  	</client-only>
+	  	<!--</client-only>-->
 	</div>
 </template>
 

@@ -32,7 +32,7 @@ export default {
       { src: "/jsme/jsme.nocache.js", type: "text/javascript", async: true, defer: true }
     ],
   },
-  created() {
+  mounted() {
     const _preload = this.smiles || "";
 
     window.jsmeOnLoad = () => {

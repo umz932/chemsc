@@ -2,8 +2,10 @@
   <section class="container">
     <div class="box">
       <b-field>
-        <chem-search label="名前検索:" :emitEvent="directMode" @hit="trighit" :initial-value="$route.params.name" placeholder="Compound Name"/>
-      </b-field>
+          <client-only>
+            <chem-search label="名前検索:" :emitEvent="directMode" @hit="trighit" :initial-value="$route.params.name" placeholder="Compound Name"/>
+          </client-only>
+        </b-field>
       <article class="media">
         <div class="media-content">
           <div class="content">

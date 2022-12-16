@@ -58,7 +58,8 @@ module.exports = {
     //'@nuxtjs/pwa',
   ],
   buildModules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/color-mode'
   ],
   /*
   ** Axios module configuration

@@ -1,7 +1,7 @@
 <template>
-    <b-field :label="label">
-        <b-autocomplete :data="results" v-model="query" :placeholder="placeholder" :loading="pending" v-stream:typing="typing$" @select="i=>hit(i)" @keyup.enter.native="hit(query)"/>
-    </b-field>
+        <b-field :label="label">
+            <b-autocomplete :data="results" v-model="query" :placeholder="placeholder" :loading="pending" v-stream:typing="typing$" @select="i=>hit(i)" @keyup.enter.native="hit(query)"/>
+        </b-field>
 </template>
 
 <script>

@@ -51,8 +51,8 @@
               <b-field v-if="cdata.mw">
                 <b-field grouped>
                   <p class="control"><strong>重量計算:</strong>&nbsp;</p>
-                  <b-numberinput v-model="quant" style="width:4rem;" :controls="0" step="0.01" min="0.01"/>
-                  <p class="control">mmol= {{ mass }}mg <span v-if="isLiq">({{ Math.round(mass/sg*100)/100 }}μL)</span></p>
+                  <b-input v-model="quant" custom-class="has-text-centered" style="width:4rem;"/>
+                  <p class="control">mmol<span v-if="quant > 0">= {{ mass > 1000 ? Math.floor(mass/10)/100 : mass }}{{mass > 1000 ? "g" : "mg"}} <span v-if="isLiq">({{ vol > 1000 ? Math.floor(vol/10)/100 : vol }}{{vol > 1000 ? "mL" :"μL"}})</span></span></p>
                 </b-field>
               </b-field>
               <p v-if="!!mp"><strong>融点:</strong> {{mp}}</p>
@@ -60,7 +60,7 @@
               <p v-if="!!storeAt"><strong>保存条件(TCI):</strong> {{storeAt}}</p>
               <p v-if="!!unstableUnder"><strong>避けるべき条件(TCI):</strong> {{unstableUnder}}</p>
               <p v-if="!!sdbs"><a :href="`https://sdbs.db.aist.go.jp/sdbs/cgi-bin/direct_frame_disp.cgi?sdbsno=${sdbs}`" target="_blank">SDBS<b-icon pack="fas" icon="external-link-alt"/></a></p>
-              <p><a :href="path_ms" target="_blank">精密質量を計算(β)</a></p>
+              <p><a @click="$router.push(path_ms)">精密質量を計算(β)</a></p>
               <p><a @click="optionsVisible=!optionsVisible">重量計算オプション<b-icon pack="fas" :icon="optionsVisible?'angle-double-up':'angle-double-down'"/></a></p>
               <vue-slide-up-down :active="optionsVisible" :duration="300">
                 <div class="box">
@@ -154,7 +154,7 @@ export default {
       title: this.pending ? 'Now retrieving...' : this.cdata.name || this.cdata.iupac || "",
     }
   },
-  async created() {
+  async mounted() {
     await this.$persist.wait();
     this.setnames_av = Object.keys(this.balancer.sets);
     if( this.query ) {
@@ -183,13 +183,16 @@ export default {
   computed: {
     purity_safe() {
       let purity = this.purity;
-      return Number.isNaN(purity) || purity <= 0 || purity > 100 ? 100 : purity;
+      return purity >= 0 && purity <= 100 ? purity: 100;
     },
     path_ms() {
       return "/ms/" + b64.encode(this.cdata.smiles);
     },
     mass() {
-      return Math.round(this.cdata.mw * this.quant * 10/ (this.purity_safe/100)) / 10;
+      return this.quant > 0 ? Math.round(this.cdata.mw * this.quant * 10/ (this.purity_safe/100)) / 10 : 0;
+    },
+    vol() {
+      return Math.round(this.mass/this.sg*100)/100
     },
     ...mapState([ 'cache', 'balancer' ]),
   },
@@ -239,7 +242,13 @@ export default {
 
 </script>
 
+<style>
+.input_center { text-align: center; }
+</style>
 <style scoped>
+.input {
+  text-align: center;
+}
 .media { 
   margin-top: 1rem;
 }
